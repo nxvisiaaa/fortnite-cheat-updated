@@ -1,0 +1,65 @@
+ImGui::SetNextWindowSize({ 730,620 });
+		if (ImGui::Begin(std::string(std::string(("NtUserSendInput"))).c_str(), 0, ImGuiWindowFlags_::ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_::ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar)) {
+			{
+				ImGui::Columns(2);
+				ImGui::SetColumnOffset(1, 130);
+				if (ImGui::Button("Aim", ImVec2(120 - 5, 30)))
+				{
+					maintabs = 1;
+
+				}
+				if (ImGui::Button("Visuals", ImVec2(120 - 5, 30)))
+				{
+					maintabs = 2;
+				}
+				if (ImGui::Button("Misc", ImVec2(120 - 5, 30)))
+				{
+					maintabs = 3;
+				}
+				if (ImGui::Button("Exploits", ImVec2(120 - 5, 30)))
+				{
+					maintabs = 4;
+				}
+				ImGui::SetCursorPosY(ImGui::GetWindowHeight() - 30);
+				ImGui::Text("", 50, 1, false);
+			}
+
+			ImGui::NextColumn();
+			if (maintabs == 1)
+			{
+				ImGui::Checkbox("Mouse Movement", &Aimbot);
+				ImGui::SliderInt("Aim Smoothness", &smooth, 1.0f, 10.0f);
+				ImGui::Combo(skCrypt("Aimbot Key"), &aimkeypos, aimkeys, sizeof(aimkeys) / sizeof(*aimkeys));
+
+			}
+
+			if (maintabs == 2)
+			{
+				ImGui::Checkbox("Conrer Box", &Esp_corner);
+				ImGui::Checkbox("3d Box", &threeeeeed);
+				ImGui::Checkbox("Snaplines", &Esp_line);
+				ImGui::Checkbox("Distance", &Esp_distance);
+				ImGui::Checkbox("Skeleton", &Esp_Skeleton);
+
+			}
+
+			if (maintabs == 3)
+			{
+				ImGui::Checkbox("Crosshair", &crosshair);
+				ImGui::Checkbox("Nazi Crosshair", &nazi);
+				ImGui::Checkbox("Fov Circle", &circle);
+				ImGui::Checkbox("Filled Fov", &filledfov);
+				ImGui::SliderFloat("FOV", &AimFOV, 25.f, 800.f);
+			}
+
+			if (maintabs == 4)
+			{
+				ImGui::Checkbox("Enable Exploits (RISKY)", &exploits);
+				if (exploits)
+				{
+					ImGui::Checkbox("Spinbot", &spinbot);
+					ImGui::Checkbox("Player Fly", &playerfly);
+				}
+			}
+		}
+		ImGui::End();
